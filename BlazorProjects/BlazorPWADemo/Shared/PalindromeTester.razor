@@ -1,0 +1,44 @@
+﻿
+<h1>Palindrome Tester</h1>
+
+<div class="input-group input-group-sm mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Enter a Word</span>
+  </div>
+  <div class="col-1">
+    <input @bind="givenWord" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  </div>
+</div>
+<div class="col-3">
+  <button @onclick="TestWord" type="button" class="btn btn-primary"> Test Palindrome </button>
+</div>
+<p>
+The word @givenWord @(isPalindrome ? "is" : "is not") a plaindrome.
+</p>
+
+@code {
+  private string givenWord = null;
+  bool isPalindrome = false;
+
+  private void TestWord() {
+  int leftHandIterator = 0;
+  int rightHandIterator = (givenWord.Length - 1);
+    while(leftHandIterator < rightHandIterator) {
+    string leftLetter = givenWord.Substring(leftHandIterator, 1).ToUpper();
+    string rightLetter = givenWord.Substring(rightHandIterator, 1).ToUpper();
+      if (!leftLetter.Equals(rightLetter))
+      {
+      isPalindrome = false;
+      return;
+      }
+
+      else
+      {
+      leftHandIterator += 1;
+      rightHandIterator -= 1;
+      }
+    }
+  isPalindrome = true;
+  }
+
+}
